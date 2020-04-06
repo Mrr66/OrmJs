@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>ORM JS version 1.0.0 2020</title>
+    </head>
+    <body>
+        <h1 style="text-align:center"> ORM JS</h1>
+        <ul" id="list"></ul">
+    </body>
+    <script type="text/javascript" src="orm.js"></script>
+    <script type="text/javascript" src="usuario.js"></script>
+</html>
+<script>
+    var orm = new dataBaseLocation("dbTeste","1.0.1");
+    orm.conectar();
+    var usuario = new Usuario();
+    orm.criarTabela(usuario);
+    usuario.Nome = "Marcos Rafael";
+    usuario.Idade = 25;
+    usuario.Sexo = "Masculino";
+    usuario.Id = 2;
+    //orm.salvar(usuario);
+    orm.obterLista(usuario, (tx, result) => {
+        var list = orm.toList(Usuario, result.rows);
+        var html = document.getElementById("list");
+        list.forEach(item => {
+            console.log(item);
+            html.innerHTML += '<li>Nome: ' + item.Nome + ', Idade: ' + item.Idade + '</li>';
+        });
+    });
+</script>

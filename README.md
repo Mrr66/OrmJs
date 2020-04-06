@@ -69,5 +69,6 @@ orm.obterLista(usuario, (tx, result) => {
 	console.log(list);
 });
 ```
-> **Result:** 
-> ![](https://raw.githubusercontent.com/Mrr66/OrmJs/master/img/list%20user.PNG)
+> **Result console:** 
+> 
+!["OK"](https://raw.githubusercontent.com/Mrr66/OrmJs/master/img/list%20user.PNG)

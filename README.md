@@ -17,14 +17,14 @@ O ***OrmJs*** é uma biblioteca leve que permite armazenar dados localmente pelo
 
 ## Conectando em um banco de dados
 
-para conectar em banco de dados basta informa seu nome com sua versão, você poderá passar também uma descrição para seu banco e o tamanho dele.
+Para conectar em banco de dados basta informa seu nome com sua versão, você poderá passar também uma descrição para seu banco e o tamanho dele.
 
 No código abaixo conecta cria ou acessa um banco de dados com nome "dbTeste".
 ```js
 var ormJs = new dataBaseLocation("dbTeste","1.0.1");
 ormJs.conectar();
 ```
-No código abaixo passando uma descrição e um tamanho fixo no banco de dados o padrão é **2 MB**.
+Passando uma descrição e um tamanho fixo no banco de dados o padrão é **2 MB**.
 ```js
 var ormJs = new dataBaseLocation("dbTeste","1.0.1","DB Local com web SQL", (10*1024*2024)); //10 MB
 ormJs.conectar();
@@ -39,14 +39,14 @@ class Usuario {
      Sexo;
 }
 ```
-Agora vamos para parte mágica no ORM primeiro vamos criar uma tabela e salvar dados na mesma.
+Agora vamos para parte mágica no **ORMJS** primeiro vamos criar uma tabela e salvar dados na mesma.
 ```js
 var usuario = new Usuario();
-    orm.criarTabela(usuario);
+    ormJs.criarTabela(usuario);
     usuario.Nome = "Marcos Rafael";
     usuario.Idade = 25;
     usuario.Sexo = "Masculino";
-    orm.salvar(usuario);
+    ormJs.salvar(usuario);
 ```
 
 
@@ -57,4 +57,17 @@ var usuario = new Usuario();
 |1|Marcos Rafael |25 | Masculino|
 
 >`Note que rowId foi adicionando automaticamente ela será sua primary Key`
+
 Para ver o resultado no Chrome basta aperta F12 e navegar em application em storage selecione Web SQL.
+
+## Selecionando dados da tabela  
+Obtendo uma lista de todos os registro da tabela Usuario
+```js
+var usuario = new Usuario();
+orm.obterLista(usuario, (tx, result) => {
+	var list = orm.toList(Usuario, result.rows);//Convertendo SQLResultSetRowList para List<Usuario>
+	console.log(list);
+});
+```
+> **Result:** 
+> ![enter image description here](https://doc-0c-1o-docs.googleusercontent.com/docs/securesc/2fiih4o0jl5uf9rh9hnphh1n5rjn8fsq/6lf3rkfcs8ns220ngkupmk8abmkkds4j/1586135850000/02241620539437588302/02241620539437588302/1UnTgGqNLBw_EehNYSOGfl-qWFjb90XJs?e=download&authuser=0&nonce=dvieglam62ikm&user=02241620539437588302&hash=254gl9v1n9ap9hcotfcg2u322tva3g9u)

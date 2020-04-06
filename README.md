@@ -91,6 +91,7 @@ orm.obterPorObject(usuario, (tx, result) =>{
 
 ## Deletando registro da tabela
 Existe duas opções para excluir um registro da tabela.
+
 1- Excluido com objeto:
 ```js
 var usuario = new Usuario();

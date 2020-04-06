@@ -5,7 +5,15 @@ Object Relational Mapping with javascript
 
 # # Primeiro ORM feito em javascript para persistência de dados local com Web SQL.
 
-O OrmJs é uma biblioteca leve que permite armazenar dados localmente pelo navegador com  [Web SQL]([https://developers.google.com/web/tools/chrome-devtools/storage/websql](https://developers.google.com/web/tools/chrome-devtools/storage/websql)), sem precisar usar instruções SQL, todas as consultas e inserções são feita de forma simples e elegante usando apenas orientação a objeto e conceitos de entidade representativas com **javascript**.
+O ***OrmJs*** é uma biblioteca leve que permite armazenar dados localmente pelo navegador com  [Web SQL]([https://developers.google.com/web/tools/chrome-devtools/storage/websql](https://developers.google.com/web/tools/chrome-devtools/storage/websql)), sem precisar usar instruções SQL, todas as consultas e inserções são feita de forma simples e elegante usando apenas orientação a objeto e conceitos de entidade representativas com **javascript**.
+
+**CRUD COMPLETO**
+
+ - Select
+ - Insert
+ - Update
+ - Delete
+ Sem usar instruções SQL
 
 ## Conectando em um banco de dados
 
@@ -31,24 +39,21 @@ class Usuario {
      Sexo;
 }
 ```
+Agora vamos para parte mágica no ORM primeiro vamos criar uma tabela e salvar dados na mesma.
+```js
+var usuario = new Usuario();
+    orm.criarTabela(usuario);
+    usuario.Nome = "Marcos Rafael";
+    usuario.Idade = 25;
+    usuario.Sexo = "Masculino";
+    orm.salvar(usuario);
+```
+
 
 > **Result:** 
 
-
-|         rowId       |Nome                          |Idade                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-
-
-
-
-
-## UML diagrams
-Relacionando 1 para 1
-```mermaid
-graph LR
-A[Usuario] -- 1 -> 1 --> B(Carro)
-
-
-
-```
+|  rowId |Nome            |Idade  | Sexo         
+|--------|----------------|-------|---------|
+|1|Marcos Rafael |25 | Masculino
+`Note que rowId foi adicionando automaticamente ela será sua primary Key`
+Para ver o resultado no Chrome basta aperta F12 e navegar em application em storage selecione Web SQL.

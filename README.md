@@ -69,5 +69,39 @@ orm.obterLista(usuario, (tx, result) => {
 	console.log(list);
 });
 ```
-> **Result:** 
-> ![enter image description here](https://doc-0c-1o-docs.googleusercontent.com/docs/securesc/2fiih4o0jl5uf9rh9hnphh1n5rjn8fsq/6lf3rkfcs8ns220ngkupmk8abmkkds4j/1586135850000/02241620539437588302/02241620539437588302/1UnTgGqNLBw_EehNYSOGfl-qWFjb90XJs?e=download&authuser=0&nonce=dvieglam62ikm&user=02241620539437588302&hash=254gl9v1n9ap9hcotfcg2u322tva3g9u)
+> **Result console:** 
+> 
+!["OK"](https://raw.githubusercontent.com/Mrr66/OrmJs/master/img/list%20user.PNG)
+
+Obtendo um registro com Id da tabela.
+```js
+orm.obterPorId(2, Usuario, (tx, result) =>{
+    console.log(result.rows);
+})
+```
+
+Obtendo um registro com objeto
+```js
+var usuario = new Usuario();
+usuario.Id = 1;
+orm.obterPorObject(usuario, (tx, result) =>{
+    console.log(result.rows);
+})
+```
+
+## Deletando registro da tabela
+Existe duas opções para excluir um registro da tabela.
+
+1- Excluido com objeto:
+```js
+var usuario = new Usuario();
+usuario.Id = 1;
+orm.DeletarLinha(usuario);
+```
+2- Excluido com Id:
+```js
+orm.excluirPorId(1);
+```
+
+## Você pode contribuir com esta biblioteca 
+Ei gostou do **OrmJs**, você pode ajudar a melhorar e deixa-la mais estável, deseja ter mais informações sobre o **OrmJs** entre em contato pelo **marcos@sigvirtual.com**, próxima versão em inglês em breve.

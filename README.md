@@ -64,7 +64,7 @@ Para ver o resultado no Chrome basta aperta F12 e navegar em application em stor
 Obtendo uma lista de todos os registro da tabela Usuario
 ```js
 var usuario = new Usuario();
-orm.obterLista(usuario, (tx, result) => {
+ormJs.obterLista(usuario, (tx, result) => {
 	var list = orm.toList(Usuario, result.rows);//Convertendo SQLResultSetRowList para List<Usuario>
 	console.log(list);
 });
@@ -75,7 +75,7 @@ orm.obterLista(usuario, (tx, result) => {
 
 Obtendo um registro com Id da tabela.
 ```js
-orm.obterPorId(2, Usuario, (tx, result) =>{
+ormJs.obterPorId(2, Usuario, (tx, result) =>{
     console.log(result.rows);
 })
 ```
@@ -84,7 +84,7 @@ Obtendo um registro com objeto
 ```js
 var usuario = new Usuario();
 usuario.Id = 1;
-orm.obterPorObject(usuario, (tx, result) =>{
+ormJs.obterPorObject(usuario, (tx, result) =>{
     console.log(result.rows);
 })
 ```
@@ -96,11 +96,11 @@ Existe duas opções para excluir um registro da tabela.
 ```js
 var usuario = new Usuario();
 usuario.Id = 1;
-orm.DeletarLinha(usuario);
+ormJs.DeletarLinha(usuario);
 ```
 2- Excluido com Id:
 ```js
-orm.excluirPorId(1);
+ormJs.excluirPorId(1);
 ```
 
 ## Você pode contribuir com esta biblioteca 

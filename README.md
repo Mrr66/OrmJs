@@ -70,4 +70,4 @@ orm.obterLista(usuario, (tx, result) => {
 });
 ```
 > **Result:** 
-> ![enter image description here](https://doc-0c-1o-docs.googleusercontent.com/docs/securesc/2fiih4o0jl5uf9rh9hnphh1n5rjn8fsq/6lf3rkfcs8ns220ngkupmk8abmkkds4j/1586135850000/02241620539437588302/02241620539437588302/1UnTgGqNLBw_EehNYSOGfl-qWFjb90XJs?e=download&authuser=0&nonce=dvieglam62ikm&user=02241620539437588302&hash=254gl9v1n9ap9hcotfcg2u322tva3g9u)
+> ![](https://raw.githubusercontent.com/Mrr66/OrmJs/master/img/list%20user.PNG)

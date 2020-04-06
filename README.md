@@ -1,7 +1,7 @@
 #  OrmJs 1.0.1
 
 Mapeamento objeto-relacional com javascript 
-Object Relational Mapping with javascript
+>Object Relational Mapping with javascript
 
 # # Primeiro ORM feito em javascript para persistência de dados local com Web SQL.
 
@@ -13,7 +13,7 @@ O ***OrmJs*** é uma biblioteca leve que permite armazenar dados localmente pelo
  - Insert
  - Update
  - Delete
- Sem usar instruções SQL
+ >Sem usar instruções SQL
 
 ## Conectando em um banco de dados
 
@@ -54,6 +54,7 @@ var usuario = new Usuario();
 
 |  rowId |Nome            |Idade  | Sexo         
 |--------|----------------|-------|---------|
-|1|Marcos Rafael |25 | Masculino
-`Note que rowId foi adicionando automaticamente ela será sua primary Key`
+|1|Marcos Rafael |25 | Masculino|
+
+>`Note que rowId foi adicionando automaticamente ela será sua primary Key`
 Para ver o resultado no Chrome basta aperta F12 e navegar em application em storage selecione Web SQL.

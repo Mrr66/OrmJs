@@ -19,6 +19,15 @@ function dataBaseLocation(name, version, description = "DB local", lengthDB = 20
         });
     };
 
+    self.atualizar = function (objeto) {
+        var nomeTabela = objeto.constructor.name;
+        self.db.transaction(function (tx) {
+            self.valueMarcacao = new Array();
+            var query = `update ${nomeTabela} ${self.obterValoresSetUpdate(self.obterAtributo(Object.keys(objeto)), self.obterValoresAtributo(objeto))} where rowid=1`;
+            tx.executeSql(query);
+        });
+   };
+
     self.criarTabela = function (objeto) {
         var nomeTabela = objeto.constructor.name;
         self.db.transaction(function (tx) {
@@ -96,6 +105,31 @@ function dataBaseLocation(name, version, description = "DB local", lengthDB = 20
         });
         return arrayList;
     };
+
+    self.obterValoresSetUpdate = function(atributo, valores){
+        var resultSet ="";
+        atributo.split(",").forEach((name, index) => {
+            if(name != "Id"){
+                if(index == 0){
+                    if(typeof valores[index] == "string")
+                        resultSet += `SET ${name}="${valores[index]}",`;
+                    else
+                        resultSet += `SET ${name}=${valores[index]},`;
+                }
+                else if((valores.length - 2) == index) //Menos o ID e a posição 0
+                    if(typeof valores[index] == "string")
+                        resultSet += ` ${name}="${valores[index]}"`;
+                    else 
+                        resultSet += ` ${name}=${valores[index]}`;
+                else
+                    if(typeof valores[index] == "string")
+                        resultSet += ` ${name}="${valores[index]}",`;
+                    else
+                        resultSet += ` ${name}=${valores[index]},`;
+            }
+        });
+        return resultSet;
+    }
 
     self.excluirTabela = function (objeto) {
         var nomeTabela = objeto.constructor.name;

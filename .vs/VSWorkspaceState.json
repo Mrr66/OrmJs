@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\entity",
+    "\\pt-BR"
   ],
-  "SelectedNode": "\\orm.js",
+  "SelectedNode": "\\entity\\usuario.js",
   "PreviewInSolutionExplorer": false
 }

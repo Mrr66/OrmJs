@@ -95,7 +95,6 @@ Atualizando dados da tabela segue o modelo abaixo.
 
 ```js
 var usuario = new Usuario();
-ormJs.criarTabela(usuario);
 usuario.Nome = "Marcos Rafael Rodrigues";
 usuario.Idade = 26;
 usuario.Sexo = "M";

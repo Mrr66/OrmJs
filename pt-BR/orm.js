@@ -1,4 +1,10 @@
 ﻿// JavaScript source code
+// JavaScript source code
+//Orm JS build 2020
+//Por Marcos Rafael Rodrigues
+//E-mail: marcos@sigvirtual.com
+//Site: sigvirtual.com
+//Idioma: pt-BR
 
 function dataBaseLocation(name, version, description = "DB local", lengthDB = 2097152) {
     var self = this;
@@ -41,9 +47,20 @@ function dataBaseLocation(name, version, description = "DB local", lengthDB = 20
         self.db.transaction(function (tx) {
             console.log("Tabela " + nomeTabela + " atributos da tabela " + self.obterAtributo(Object.keys(objeto)));
             if (objeto.Id > 0)
-                tx.executeSql('DELETE FROM SET IdRow = ' + objeto.Id + ' (id unique, ' + self.obterAtributo(Object.keys(objeto)) + ')');
+                tx.executeSql("DELETE FROM " + nomeTabela + " WHERE rowId = " + objeto.Id);
             else
-                console.error("Id do tabela " + nomeTabela + " não foi passado. Obs: todas entidades deve possuir atributo Id");
+                console.error("Id tabela " + nomeTabela + " não foi passado. Obs: todas entidades deve possuir atributo Id");
+        });
+    };
+
+    self.DeletarPeloId = function (id, entity) {
+        var nomeTabela = entity.constructor.name;
+        self.db.transaction(function (tx) {
+            console.log("Tabela " + nomeTabela + " atributos da tabela " + self.GetAttribute(Object.keys(entity)));
+            if (id > 0)
+                tx.executeSql("DELETE FROM " + nomeTabela + " WHERE rowId = " + id);
+            else
+                console.error("Id table " + nomeTabela + " it was not passed. Note: all entities must have Id attribute");
         });
     };
 

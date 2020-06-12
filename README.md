@@ -1,4 +1,4 @@
-#  OrmJs 1.0.1
+#  OrmJs 1.0.2
 
 Mapeamento objeto-relacional com javascript 
 >Object Relational Mapping with javascript
@@ -22,12 +22,12 @@ Para conectar em banco de dados basta informa seu nome com sua versão, você po
 No código abaixo conecta cria ou acessa um banco de dados com nome "dbTeste".
 ```js
 var ormJs = new dataBaseLocation("dbTeste","1.0.1");
-ormJs.conectar();
+ormJs.connect();
 ```
 Passando uma descrição e um tamanho fixo no banco de dados o padrão é **2 MB**.
 ```js
 var ormJs = new dataBaseLocation("dbTeste","1.0.1","DB Local com web SQL", (10*1024*2024)); //10 MB
-ormJs.conectar();
+ormJs.connect();
 ```
 
 ## Criando uma entidade e salvando dados
@@ -42,11 +42,11 @@ class Usuario {
 Agora vamos para parte mágica no **ORMJS** primeiro vamos criar uma tabela e salvar dados na mesma.
 ```js
 var usuario = new Usuario();
-    ormJs.criarTabela(usuario);
+    ormJs.CreateTable(usuario);
     usuario.Nome = "Marcos Rafael";
     usuario.Idade = 25;
     usuario.Sexo = "Masculino";
-    ormJs.salvar(usuario);
+    ormJs.Save(usuario);
 ```
 
 
@@ -64,7 +64,7 @@ Para ver o resultado no Chrome basta aperta F12 e navegar em application em stor
 Obtendo uma lista de todos os registro da tabela Usuario
 ```js
 var usuario = new Usuario();
-ormJs.obterLista(usuario, (tx, result) => {
+ormJs.GetAll(usuario, (tx, result) => {
 	var list = orm.toList(Usuario, result.rows);//Convertendo SQLResultSetRowList para List<Usuario>
 	console.log(list);
 });
@@ -75,7 +75,7 @@ ormJs.obterLista(usuario, (tx, result) => {
 
 Obtendo um registro com Id da tabela.
 ```js
-ormJs.obterPorId(2, Usuario, (tx, result) =>{
+ormJs.GetById(2, Usuario, (tx, result) =>{
     console.log(result.rows);
 })
 ```
@@ -84,7 +84,7 @@ Obtendo um registro com objeto
 ```js
 var usuario = new Usuario();
 usuario.Id = 1;
-ormJs.obterPorObject(usuario, (tx, result) =>{
+ormJs.GetByObject(usuario, (tx, result) =>{
     console.log(result.rows);
 })
 ```
@@ -99,7 +99,7 @@ usuario.Nome = "Marcos Rafael Rodrigues";
 usuario.Idade = 26;
 usuario.Sexo = "M";
 usuario.Id = 1;
-ormJs.atualizar(usuario);
+ormJs.Update(usuario);
 ```
 
 ## Deletando registro da tabela
@@ -109,13 +109,13 @@ Existe duas opções para excluir um registro da tabela.
 ```js
 var usuario = new Usuario();
 usuario.Id = 1;
-ormJs.DeletarLinha(usuario);
+ormJs.DeleteRow(usuario);
 ```
 2- Excluido com Id:
 ```js
-ormJs.excluirPorId(1);
+ormJs.DeleteById(1, entity);
 ```
 
 ## Você pode contribuir com esta biblioteca 
-Ei gostou do **OrmJs**, você pode ajudar a melhorar e deixa-la mais estável, deseja ter mais informações sobre o **OrmJs** entre em contato pelo **marcos@sigvirtual.com**, próxima versão em inglês em breve.
+Ei gostou do **OrmJs**, você pode ajudar a melhorar e deixa-la mais estável, deseja ter mais informações sobre o **OrmJs** entre em contato pelo **marcos@sigvirtual.com**.
 

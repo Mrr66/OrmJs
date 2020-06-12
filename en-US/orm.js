@@ -18,8 +18,8 @@ function dataBaseLocation(name, version, description = "DB SQL location", length
         var nomeTabela = object.constructor.name;
         self.db.transaction(function (tx) {
             self.valueMarcacao = new Array();
-            self.obterValoresAtributo(object);
-            tx.executeSql("INSERT INTO " + object.constructor.name + "(" + self.GetAttribute(Object.keys(object)) + ") VALUES (" + self.valueMarcacao.toString() + ")", self.obterValoresAtributo(object), console.log("OK"), console.log
+            self.GetValueAttribute(object);
+            tx.executeSql("INSERT INTO " + object.constructor.name + "(" + self.GetAttribute(Object.keys(object)) + ") VALUES (" + self.valueMarcacao.toString() + ")", self.GetValueAttribute(object), console.log("OK"), console.log
                 ("Erro"));
         });
     };
@@ -28,7 +28,7 @@ function dataBaseLocation(name, version, description = "DB SQL location", length
         var nomeTabela = objeto.constructor.name;
         self.db.transaction(function (tx) {
             self.valueMarcacao = new Array();
-            var query = `update ${nomeTabela} ${self.obterValoresSetUpdate(self.GetAttribute(Object.keys(objeto)), self.obterValoresAtributo(objeto))} where rowid=1`;
+            var query = `update ${nomeTabela} ${self.obterValoresSetUpdate(self.GetAttribute(Object.keys(objeto)), self.GetValueAttribute(objeto))} where rowid=1`;
             tx.executeSql(query);
         });
     };
@@ -46,7 +46,7 @@ function dataBaseLocation(name, version, description = "DB SQL location", length
         self.db.transaction(function (tx) {
             console.log("Tabela " + nomeTabela + " atributos da tabela " + self.GetAttribute(Object.keys(object)));
             if (object.Id > 0)
-                tx.executeSql('DELETE FROM SET IdRow = ' + object.Id + ' (id unique, ' + self.GetAttribute(Object.keys(object)) + ')');
+                tx.executeSql("DELETE FROM " + nomeTabela + " WHERE rowId = " + object.Id);
             else
                 console.error("Id table " + nomeTabela + " it was not passed. Note: all entities must have Id attribute");
         });
@@ -56,8 +56,8 @@ function dataBaseLocation(name, version, description = "DB SQL location", length
         var nomeTabela = entity.constructor.name;
         self.db.transaction(function (tx) {
             console.log("Tabela " + nomeTabela + " atributos da tabela " + self.GetAttribute(Object.keys(entity)));
-            if (object.Id > 0)
-                tx.executeSql('DELETE FROM SET IdRow = ' + id + ' (id unique, ' + self.GetAttribute(Object.keys(entity)) + ')');
+            if (id > 0)
+                tx.executeSql("DELETE FROM " + nomeTabela + " WHERE rowId = " + id);
             else
                 console.error("Id table " + nomeTabela + " it was not passed. Note: all entities must have Id attribute");
         });
@@ -92,7 +92,7 @@ function dataBaseLocation(name, version, description = "DB SQL location", length
     };
 
     self.GetById = function (id, entity, callBack) {
-        var nomeTabela = entity.name;
+        var nomeTabela = entity.constructor.name;
         if (nomeTabela === undefined)
             console.error("It is necessary to pass the end by parameter.");
         self.db.transaction(function (tx) {
@@ -113,7 +113,7 @@ function dataBaseLocation(name, version, description = "DB SQL location", length
         return nomeAtr;
     };
 
-    self.GetValueAtributo = function (object) {
+    self.GetValueAttribute = function (object) {
         var arrayList = new Array();
         Object.getOwnPropertyNames(object).forEach(value => { 
             arrayList.push(object[value]);
